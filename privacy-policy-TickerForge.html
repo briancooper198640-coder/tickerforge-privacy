@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — TickerForge</title>
+  <meta name="description" content="Privacy Policy for TickerForge — Crypto Market Dashboard & Charts browser extension." />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0B0E17;
+      --surface: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.07);
+      --text: #E0E1E8;
+      --text-muted: #8A8C9E;
+      --accent: #3DD8C5;
+      --accent-dim: rgba(61,216,197,0.12);
+      --heading: #F4F4F8;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Background blobs ── */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.10;
+    }
+    .blob-1 { width: 500px; height: 500px; background: #3DD8C5; top: -10%; left: -8%; animation: drift1 24s ease-in-out infinite alternate; }
+    .blob-2 { width: 420px; height: 420px; background: #5B8DEF; bottom: -5%; right: -6%; animation: drift2 28s ease-in-out infinite alternate; }
+    .blob-3 { width: 350px; height: 350px; background: #A78BFA; top: 40%; left: 50%; animation: drift3 22s ease-in-out infinite alternate; }
+
+    @keyframes drift1 { to { transform: translate(60px, 40px) scale(1.1); } }
+    @keyframes drift2 { to { transform: translate(-50px, -30px) scale(1.05); } }
+    @keyframes drift3 { to { transform: translate(-40px, 50px) scale(0.95); } }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      margin-bottom: 56px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--heading);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+    .logo svg { flex-shrink: 0; }
+    .header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 800;
+      color: var(--heading);
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+    .header .subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* ── Sections ── */
+    .section {
+      margin-bottom: 40px;
+    }
+    .section-number {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 10px;
+      letter-spacing: 0.04em;
+    }
+    .section h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .section p {
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    /* ── Lists ── */
+    .policy-list {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 16px;
+    }
+    .policy-list li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 8px;
+      color: var(--text);
+      font-size: 14.5px;
+    }
+    .policy-list li::before {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 9px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.7;
+    }
+    .policy-list.negative li::before {
+      background: #6B7280;
+    }
+
+    /* ── Highlight card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin: 16px 0;
+    }
+    .card code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 2px 7px;
+      border-radius: 5px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 40px 0;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      margin-top: 48px;
+    }
+    .footer p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .container { padding: 40px 18px 60px; }
+      .section { margin-bottom: 32px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .blob { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-layer">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="6" width="3" height="10" rx="1" fill="#3DD8C5"/>
+          <rect x="7" y="3" width="3" height="13" rx="1" fill="#5B8DEF"/>
+          <rect x="12" y="8" width="3" height="8" rx="1" fill="#3DD8C5"/>
+          <rect x="17" y="5" width="3" height="11" rx="1" fill="#5B8DEF" opacity="0.6"/>
+        </svg>
+        TickerForge
+      </div>
+      <h1>Privacy Policy</h1>
+      <p class="subtitle">Last updated: February 2025</p>
+    </header>
+
+    <!-- 1 -->
+    <section class="section">
+      <span class="section-number">01</span>
+      <h2>Introduction</h2>
+      <p>TickerForge is a browser extension for monitoring the cryptocurrency market. This Privacy Policy explains what data the extension collects, how it is used, and how it is stored. We are committed to protecting your privacy and being transparent about our data practices.</p>
+    </section>
+
+    <!-- 2 -->
+    <section class="section">
+      <span class="section-number">02</span>
+      <h2>Data Collection</h2>
+      <p>TickerForge does not collect, transmit, or store any personal data on external servers.</p>
+      <p>The extension does <strong>not</strong>:</p>
+      <ul class="policy-list negative">
+        <li>Require account creation or registration</li>
+        <li>Collect names, email addresses, or any personal identifiers</li>
+        <li>Use analytics, telemetry, or tracking services</li>
+        <li>Use cookies or fingerprinting techniques</li>
+        <li>Access browsing history, bookmarks, or page content</li>
+        <li>Inject scripts into web pages</li>
+        <li>Transmit any user data to third parties</li>
+      </ul>
+    </section>
+
+    <!-- 3 -->
+    <section class="section">
+      <span class="section-number">03</span>
+      <h2>Locally Stored Data</h2>
+      <p>All user data is stored exclusively on your device using the Chrome <code>storage.local</code> API. This includes:</p>
+      <ul class="policy-list">
+        <li><strong>User preferences</strong> — selected theme, language, display currency, keyboard shortcut, feed refresh interval, and provider preference</li>
+        <li><strong>Watchlist</strong> — list of cryptocurrency assets you choose to monitor</li>
+        <li><strong>Cached API responses</strong> — temporarily stored market data, news headlines, and chart data to reduce network requests and improve performance</li>
+      </ul>
+      <p>This data never leaves your browser and is not accessible to any external service or server.</p>
+    </section>
+
+    <!-- 4 -->
+    <section class="section">
+      <span class="section-number">04</span>
+      <h2>Network Requests</h2>
+      <p>TickerForge makes requests to the following public APIs solely to retrieve cryptocurrency market data:</p>
+      <div class="card">
+        <ul class="policy-list">
+          <li><code>api.coingecko.com</code> — Market data, prices, charts</li>
+          <li><code>api.coincap.io</code> — Fallback market data</li>
+          <li><code>min-api.cryptocompare.com</code> — Cryptocurrency news</li>
+          <li><code>api.alternative.me</code> — Fear &amp; Greed Index</li>
+        </ul>
+      </div>
+      <p>These requests contain no personal information — only standard HTTP headers and query parameters required to fetch public market data (e.g., coin ID, time range, currency). No API keys, authentication tokens, or user identifiers are sent with these requests.</p>
+    </section>
+
+    <!-- 5 -->
+    <section class="section">
+      <span class="section-number">05</span>
+      <h2>Permissions</h2>
+      <p>The extension requests the following browser permissions:</p>
+      <ul class="policy-list">
+        <li><code>storage</code> — To save your preferences, watchlist, and cached data locally on your device</li>
+        <li><code>alarms</code> — To schedule periodic background updates of market data, news, and watchlist prices</li>
+        <li><strong>Host access to API domains</strong> — To fetch cryptocurrency data from the public APIs listed in Section 4</li>
+      </ul>
+      <p>The extension does not request access to your tabs, browsing activity, active page content, or any other sensitive browser data.</p>
+    </section>
+
+    <!-- 6 -->
+    <section class="section">
+      <span class="section-number">06</span>
+      <h2>Third-Party Services</h2>
+      <p>TickerForge uses third-party APIs exclusively to retrieve publicly available cryptocurrency data. We do not control these services and are not responsible for their privacy practices. No user data is shared with these providers — requests consist only of standard market data queries.</p>
+    </section>
+
+    <!-- 7 -->
+    <section class="section">
+      <span class="section-number">07</span>
+      <h2>Children's Privacy</h2>
+      <p>TickerForge does not knowingly collect any personal information from anyone, including children under the age of 13. The extension is a market data display tool and does not facilitate financial transactions, account creation, or any form of data submission.</p>
+    </section>
+
+    <!-- 8 -->
+    <section class="section">
+      <span class="section-number">08</span>
+      <h2>Data Retention and Deletion</h2>
+      <p>Since all data is stored locally on your device:</p>
+      <ul class="policy-list">
+        <li><strong>To clear cached data</strong> — use the extension's built-in settings or clear your browser's extension storage</li>
+        <li><strong>To delete all data</strong> — uninstalling the extension automatically removes all associated local data</li>
+      </ul>
+      <p>No data persists on any external server because no data is ever sent to one.</p>
+    </section>
+
+    <!-- 9 -->
+    <section class="section">
+      <span class="section-number">09</span>
+      <h2>Security</h2>
+      <p>TickerForge is built with security in mind:</p>
+      <ul class="policy-list">
+        <li>All network requests are made over HTTPS</li>
+        <li>No remote code execution — all logic is bundled within the extension</li>
+        <li>No use of <code>eval()</code>, inline scripts, or dynamic code loading</li>
+        <li>Content Security Policy (CSP) is enforced per Manifest V3 requirements</li>
+        <li>No sensitive credentials are stored or transmitted</li>
+      </ul>
+    </section>
+
+    <!-- 10 -->
+    <section class="section">
+      <span class="section-number">10</span>
+      <h2>Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. Any changes will be reflected in the extension update. Continued use of the extension after changes constitutes acceptance of the updated policy.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2025 TickerForge. All rights reserved.</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
